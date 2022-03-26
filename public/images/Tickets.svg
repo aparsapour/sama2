@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="Info.svg">>
+    <g transform="scale(3)">
+        <path fill='#d0d0d0' stroke="black" class="w-6 h-6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" d="M15 5
+        v2m0 4
+        v2m0 4
+        v2
+        M5 5
+        a2 2 0 00-2 2
+        v3
+        a2 2 0 110 4
+        v3
+        a2 2 0 002 2
+        h14
+        a2 2 0 002-2
+        v-3
+        a2 2 0 110-4
+        V7
+        a2 2 0 00-2-2
+        H5
+        z" />
+    </g>
+</svg>
+
+

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="Users.svg">>
+    <g transform="scale(3)">
+        <path fill='blue' viewBox="0 0 100 100" stroke="black" d="M12 4.354
+           a4 4 0 110 5.292
+           M15 21
+           H3v-1
+           a4 4 0 0112 0
+           v1z
+           m0 0
+           h6
+           v-1
+           a6 6 0 00-9 -5.197
+           M13 7
+           a4 4 0 11-8 0 
+            4 4 0 018 0
+           z" />
+    </g>
+</svg>

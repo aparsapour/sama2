@@ -1,0 +1,253 @@
+import React, { useState } from 'react';
+import { Grid } from '@mui/material';
+import { useRouter } from 'next/router';
+import {
+    useGetServiceCenterUserListQuery,
+    useServiceCenterUpdateUserMutation,
+} from '../../../app/shamRTKapi';
+import { HeadTitle } from '../../../components/z-Reusables/Title';
+import { TextInput } from '../../../components/z-Reusables/TextInput';
+import { GeneralButton } from '../../../components/z-Reusables/GeneralButton';
+import {
+    ResponsiveTable,
+    ShamPaginate,
+} from '../../../components/z-Reusables/ResponsiveTable';
+
+const DivRoot = `text-4xl text-black-400 flex-grow: 1 rtl px-0 py-2%;`;
+
+export default function UsersToRegister() {
+    let router = useRouter();
+    const [inEditMode, SetInEditMode] = useState(false);
+    // eslint-disable-next-line
+    const [Zakhireh, result] = useServiceCenterUpdateUserMutation();
+
+    const [Name, SetName] = useState('');
+    const [Family, setFamily] = useState('');
+    const [NationalId, SetNationalId] = useState('');
+    const [Mobile, setMobile] = useState('');
+    const [selectedRow, setSelectedRow] = useState({});
+
+    let pageIndex = 1;
+
+    const [pageCount, setPageCount] = useState(1);
+
+    const [formQuery, setFormQuery] = useState({
+        pIndex: 1,
+        phoneNumber: '',
+        nationalCode: '',
+        name: '',
+        family: '',
+    });
+    const users = useGetServiceCenterUserListQuery(formQuery);
+    function setFormStates(row) {
+        SetName(row['name'] ? row['name'] : '');
+        setFamily(row['family'] ? row['family'] : '');
+        SetNationalId(row['id']);
+        setMobile(row['phonenumber']);
+        setSelectedRow(row);
+    }
+    const handleUsersRowData = (qry) => {
+        if (!qry.data) return [];
+        if (qry.data.item.pageCount !== pageCount)
+            setPageCount(qry.data.item.pageCount);
+        const rowdata = qry.data.item.items.map((row) => ({
+            ...row,
+            name: row['name'] ? row['name'] : '',
+            familly: row['family'] ? row['family'] : '',
+            id: row['id'],
+            U4: row['phonenumber'],
+            edit: (
+                <div
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                    }}
+                    onClick={() => {
+                        SetInEditMode(true);
+                        setFormStates(row);
+                    }}
+                >
+                    <img className='editImg' alt='' src='/images/edit.svg' width='30px' />
+                </div>
+            ),
+        }));
+        console.log(qry.data.item, rowdata);
+        return rowdata;
+    };
+
+    /** id, provinceid, cityid, departmentid,   userLevelId,    password,   name,   family, phoneNumber **/
+    const colDefs = [
+        {
+            headerName: 'کد پرسنلی',
+            field: 'id',
+            mobileHeader: true,
+        },
+        {
+            headerName: 'نام',
+            field: 'name',
+            mobileHeader: true,
+        },
+        {
+            headerName: 'نام خانوادگی',
+            field: 'family',
+            mobileHeader: true,
+        },
+        {
+            headerName: 'تلفن همراه',
+            field: 'phoneNumber',
+        },
+        {
+            headerName: 'استان',
+            field: 'provinceid',
+        },
+        {
+            headerName: 'ویرایش',
+            field: 'edit',
+        },
+    ];
+
+    const handlePageChange = (p) => {
+        setFormQuery({
+            pIndex: p,
+            phoneNumber: Mobile,
+            nationalCode: NationalId,
+            name: Name,
+            family: Family,
+        });
+    };
+    return (
+        <DivRoot>
+            <HeadTitle banner='کاربران مجاز جهت ثبت نام' />
+
+            <Grid container spacing={2} justifyContent='center'>
+                <Grid item xs={11}>
+                    <Grid container rowSpacing={2} justifyContent='center'>
+                        <Grid item xs={12} md={5}>
+                            <TextInput
+                                id='Name'
+                                value={Name}
+                                valueSet={SetName}
+                                label='نام'
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} md={5}>
+                            <TextInput
+                                id='Family'
+                                value={Family}
+                                valueSet={setFamily}
+                                label='نام خانوادگی'
+                            />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={11}>
+                    <Grid container rowSpacing={2} justifyContent='center'>
+                        <Grid item xs={12} md={5}>
+                            <TextInput
+                                id='NationalId'
+                                value={NationalId}
+                                valueSet={SetNationalId}
+                                label='کد ملی'
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} md={5}>
+                            <TextInput
+                                id='Mobile'
+                                value={Mobile}
+                                valueSet={setMobile}
+                                label='تلفن همراه'
+                            />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <div
+                    style={{
+                        width: '100%',
+                        height: '1px',
+                        backgroundColor: '#ccc',
+                        margin: '20px auto 0px auto',
+                    }}
+                ></div>
+                <div
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: '20px',
+                    }}
+                >
+                    <GeneralButton
+                        matn={inEditMode ? 'ذخیره' : 'افزودن'}
+                        onClick={async () => {
+                            const data = {
+                                name: Name,
+                                family: Family,
+                                nationalCode: NationalId,
+                                phone: Mobile,
+                                code: selectedRow['کد مرکز'],
+                            };
+                            const formData = new URLSearchParams();
+                            for (let key in data) {
+                                formData.append(key, data[key]);
+                            }
+                            try {
+                                await Zakhireh(formData).unwrap();
+                            } catch (err) {
+                                alert({
+                                    status: 'error',
+                                    title: 'Error',
+                                    description: 'there was an error posting Data!',
+                                });
+                            }
+                        }}
+                    />
+                    {inEditMode ? (
+                        <GeneralButton
+                            matn='انصراف'
+                            onClick={() => {
+                                SetInEditMode(false);
+                                SetName('');
+                                setFamily('');
+                                SetNationalId('');
+                                setMobile('');
+                            }}
+                        />
+                    ) : (
+                        <GeneralButton
+                            matn='جستجو'
+                            onClick={() => {
+                                handlePageChange(pageIndex);
+                            }}
+                        />
+                    )}
+                </div>
+
+                <Grid item xs={2} />
+                <Grid item xs={8}>
+                    <ShamPaginate
+                        totalPages={pageCount}
+                        goToPage={(p) => handlePageChange(p)}
+                    />
+                </Grid>
+                <Grid item xs={2} />
+                <Grid item xs={12}>
+                    <ResponsiveTable data={handleUsersRowData(users)} colDefs={colDefs} />
+                </Grid>
+                <GeneralButton
+                    matn='بازگشت'
+                    fill='grey'
+                    onClick={() => {
+                        router.back();
+                    }}
+                />
+            </Grid>
+        </DivRoot>
+    );
+}
