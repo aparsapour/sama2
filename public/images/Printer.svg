@@ -1,0 +1,36 @@
+<!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" class="w-6 h-6" viewBox="0 0 24 24">
+    <g transform="scale(3)" fill='none'>
+        <path stroke-linecap="round" stroke-linejoin="round" d="
+    M17 17
+    h2
+    a2 2 0 002-2v-4
+    a2 2 0 00-2-2
+    H5
+    a2 2 0 00-2 2
+    v4
+    a2 2 0 002 2
+    h2
+    m2 4
+    h6
+    a2 2 0 002-2v-4
+    a2 2 0 00-2-2
+    H9
+    a2 2 0 00-2 2
+    v4
+    a2 2 0 002 2z
+    m8-12
+    V5
+    a2 2 0 00-2-2
+    H9
+    a2 2 0 00-2 2
+    v4
+    h10
+    z" />
+    </g>
+</svg> -->
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="blue">
+    <path fill-rule="evenodd"
+        d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z"
+        clip-rule="evenodd" />
+</svg>
