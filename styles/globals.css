@@ -1,6 +1,26 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* @layer base {
+  "[type='text']",
+  "[type='email']",
+  "[type='url']",
+  "[type='password']",
+  "[type='number']",
+  "[type='date']",
+  "[type='datetime-local']",
+  "[type='month']",
+  "[type='search']",
+  "[type='tel']",
+  "[type='time']",
+  "[type='week']",
+  '[multiple]',
+  'textarea',
+  'select' {
+    @apply w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-200;
+  }
+} */
 
 @layer components {
   .react_paginate {
@@ -8,7 +28,7 @@
   }
 }
 
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -21,4 +41,60 @@ a {
 
 * {
   box-sizing: border-box;
+} */
+
+@layer base {
+  @font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 400;
+    src: local('َAnjoman'),
+      url('/fonts/Anjoman-FaNum-Regular.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: AnjomanMedium;
+    font-style: normal;
+    font-weight: 500;
+    src: local('َAnjoman'),
+      url('/fonts/Anjoman-FaNum-Medium.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: AnjomanSemiBold;
+    font-style: normal;
+    font-weight: 600;
+    src: local('َAnjoman'),
+      url('/fonts/Anjoman-FaNum-SemiBold.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: AnjomanBold;
+    font-style: normal;
+    font-weight: 700;
+    src: local('َAnjoman'),
+      url('/fonts/Anjoman-FaNum-Bold.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: AnjomanEtraBold;
+    font-style: normal;
+    font-weight: 800;
+    src: local('َAnjoman'),
+      url('/fonts/Anjoman-FaNum-ExtraBold.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: AnjomanLight;
+    font-style: normal;
+    font-weight: 300;
+    src: local('َAnjoman'),
+      url('/fonts/Anjoman-FaNum-Light.woff2') format('woff2');
+    font-display: swap;
+  }
+}
+body {
+  font-family: Anjoman, AnjomanLight, AnjomanMedium, AnjomanBold,
+    AnjomanSemiBold, AnjomanEtraBold, serif;
 }

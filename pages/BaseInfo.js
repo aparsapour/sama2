@@ -1,48 +1,59 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 /* icons from https://www.svgrepo.com/vectors/
  */
 const BasicInfo = [
-  { name: 'کیس سیستم', Icon: '/images/Case.svg', BaseLink: '/' },
-  { name: 'CPU', Icon: '/images/Cpu.svg', BaseLink: '/' },
+  { name: 'کیس سیستم', Icon: '/images/Case.svg', BaseLink: '/Case' },
+  { name: 'CPU', Icon: '/images/Cpu.svg', BaseLink: '/Cpu' },
   {
     name: 'واحد  های سرویس گیرنده',
     Icon: '/images/Departments.svg',
-    BaseLink: '/',
+    BaseLink: '/Departments',
   },
-  { name: 'هارد درایو', Icon: '/images/Hdd.svg', BaseLink: '/' },
-  { name: 'لپ تاپ', Icon: '/images/Laptop.svg', BaseLink: '/' },
-  { name: 'مونیتور', Icon: '/images/Monitor.svg', BaseLink: '/' },
-  { name: 'مادر برد', Icon: '/images/Motherboard.svg', BaseLink: '/' },
-  { name: 'شبکه', Icon: '/images/Network.svg', BaseLink: '/' },
+  { name: 'هارد درایو', Icon: '/images/Hdd.svg', BaseLink: '/Hdd' },
+  { name: 'لپ تاپ', Icon: '/images/Laptop.svg', BaseLink: '/Laptop' },
+  { name: 'مونیتور', Icon: '/images/Monitor.svg', BaseLink: '/Monitor' },
+  {
+    name: 'مادر برد',
+    Icon: '/images/Motherboard.svg',
+    BaseLink: '/Motherboard',
+  },
+  { name: 'شبکه', Icon: '/images/Network.svg', BaseLink: '/Network' },
   {
     name: 'ارتبات شبکه ای',
     Icon: '/images/Domain.svg',
     BaseLink: '/',
   },
-  { name: 'سیسستم عامل', Icon: '/images/Os.svg', BaseLink: '/' },
-  { name: 'استانها', Icon: '/images/Provinces.svg', BaseLink: '/' },
-  { name: 'منبع تفذیه', Icon: '/images/PowerSupply.svg', BaseLink: '/' },
-  { name: 'چاپگر', Icon: '/images/Printer.svg', BaseLink: '/' },
-  { name: 'حافظه', Icon: '/images/Ram.svg', BaseLink: '/' },
-  { name: 'اسکنر', Icon: '/images/Scanner.svg', BaseLink: '/' },
-  { name: 'تلفن', Icon: '/images/Telphone.svg', BaseLink: '/' },
-  { name: 'کاربران', Icon: '/images/Users.svg', BaseLink: '/' },
-  { name: 'سطوح کاربری', Icon: '/images/AccessLevel.svg', BaseLink: '/' },
+  { name: 'سیسستم عامل', Icon: '/images/Os.svg', BaseLink: '/Os' },
+  { name: 'استانها', Icon: '/images/Provinces.svg', BaseLink: '/Province' },
+  {
+    name: 'منبع تفذیه',
+    Icon: '/images/PowerSupply.svg',
+    BaseLink: '/PowerSupply',
+  },
+  { name: 'چاپگر', Icon: '/images/Printer.svg', BaseLink: '/Printer' },
+  { name: 'حافظه', Icon: '/images/Ram.svg', BaseLink: '/Ram' },
+  { name: 'اسکنر', Icon: '/images/Scanner.svg', BaseLink: '/Scanner' },
+  { name: 'تلفن', Icon: '/images/Telphone.svg', BaseLink: '/Telephone' },
+  { name: 'کاربران', Icon: '/images/Users.svg', BaseLink: '/User' },
+  {
+    name: 'سطوح کاربری',
+    Icon: '/images/AccessLevel.svg',
+    BaseLink: '/UserLevel',
+  },
 ];
-console.table(BasicInfo);
+// console.table(BasicInfo);
 export default function BaseInfo() {
   return (
     <div className='flex flex-row flex-wrap justify-evenly'>
       {BasicInfo.map(({ name, Icon, BaseLink }) => (
-        <p className='p-2 m-4 bg-slate-400'>
-          {/* <Link href={BaseLink}>  </Link>
-          <div className={`"flex p-2 ml-3 rounded cursor-pointer bg-blue-200 hover:bg-blue-400"`} >
-          </div> */}
-          <img className='w-24 h-24 rounded-sx' src={Icon} alt='' />
+        <p className='p-2 m-4 rounded-md bg-slate-100'>
           <Link href={BaseLink}>
-            <p className='text-sm font-medium text-gray-900 w-25'>{name}</p>
+            <a>
+              <img className='w-24 h-24 rounded-sx' src={Icon} alt='' />{' '}
+              <p className='text-sm font-medium text-gray-900 w-25'>{name}</p>
+            </a>
           </Link>
         </p>
       ))}
